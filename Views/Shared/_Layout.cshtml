@@ -1,0 +1,280 @@
+﻿﻿﻿@using System.Configuration
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ACME Portal| Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Font Awesome -->
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/libcss")
+    @Styles.Render("~/Content/toastr")
+    @*<link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">*@
+    <!-- Ionicons -->
+    <script src="~/dist/js/ionicons.min.js"></script>
+
+    <!-- Tempusdominus Bbootstrap 4 -->
+    @*<link rel="stylesheet" href="~/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+        <link rel="stylesheet" href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">*@
+    <!-- iCheck -->
+    @*<link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">*@
+    <!-- JQVMap -->
+    @*<link rel="stylesheet" href="~/plugins/jqvmap/jqvmap.min.css">*@
+    <!-- Theme style -->
+    @*<link rel="stylesheet" href="~/dist/css/adminlte.min.css">*@
+    <!-- overlayScrollbars -->
+    @*<link rel="stylesheet" href="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">*@
+    <!-- Daterange picker -->
+    @*<link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">*@
+    <!-- summernote -->
+    @*<link rel="stylesheet" href="~/plugins/summernote/summernote-bs4.css">*@
+    <!-- select2 -->
+    @*<link rel="stylesheet" href="~/plugins/select2/css/select2.min.css">
+        <link rel="stylesheet" href="~/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">*@
+    @*sweet alert*@
+    @*<link rel="stylesheet" href="~/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">*@
+    <!-- Google Font: Source Sans Pro -->
+    @*<link href="~/dist/js/googlefonts.css" rel="stylesheet" />*@
+
+    @*<link rel="stylesheet" href="~/plugins/datatables-bs4/css/dataTables.bootstrap4.css">*@
+    @*<link href="~/plugins/DTFilesForExcel/datatablebuttons.css" rel="stylesheet" />*@
+
+    @*<link href="~/plugins/raty/jquery.raty.css" rel="stylesheet" />*@
+
+    @*<link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.css" rel="stylesheet" />*@
+    <style>
+        #example2 {
+            table-layout: fixed !important;
+            /*word-wrap:break-word;*/
+        }
+
+        .btn-info {
+            color: #fff;
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+            box-shadow: none;
+            padding: 2px 7px;
+            font-size: 12px;
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+            box-shadow: none;
+            padding: 2px 7px;
+            font-size: 12px;
+        }
+
+        table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+            padding: 5px;
+        }
+
+        .content-header {
+            padding: 7px .5rem;
+        }
+    </style>
+</head>
+<body style="background-image:url(/dist/img/watermark.gif);background-repeat:no-repeat" class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        @Html.Partial("_Header")
+
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        @Html.Partial("_SideBar")
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            @RenderBody()
+            <!-- Content Header (Page header) -->
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 <a href="#">AKU.</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.0.0-rc.1
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+    <div id="ConfirmModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content bg-warning">
+                <div class="modal-header">
+                    <h5>Delete</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <b>Are you sure to delete?</b>
+                </div>
+                <div class="modal-footer  text-md-center">
+                    <input href="" type="button" id="deleteLink" class="btn btn-success" value="Yes" />
+                    <input type="button" class="btn btn-danger" value="No" onclick="$('#ConfirmModal').hide();" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/libjs")
+    @Scripts.Render("~/bundles/dataTables")
+    @*<script src="~/plugins/jquery/jquery.min.js"></script>
+          jQuery UI 1.11.4
+        <script src="~/plugins/jquery-ui/jquery-ui.min.js"></script>*@
+    @*<script src="~/plugins/datatables/jquery.dataTables.js"></script>
+        <script src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>*@
+
+    @*<script src="~/plugins/raty/jquery.raty.js"></script>*@
+
+    @*  <script src="~/plugins/DTFilesForExcel/jszip.min.js"></script>*@
+    @*<script src="~/plugins/DTFilesForExcel/dataTables.buttons.min.js"></script>
+        <script src="~/plugins/DTFilesForExcel/pdfmake.min.js"></script>
+        <script src="~/plugins/DTFilesForExcel/vfs_fonts.js"></script>
+        <script src="~/plugins/DTFilesForExcel/buttons.html5.min.js"></script>*@
+
+
+    @*<script src="~/plugins/sweetalert2/sweetalert2.min.js"></script>*@
+    < !-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+
+        $(".date-picker").datepicker({
+            format: "yyyy-mm-dd"
+        })
+
+    </script>
+    <!-- Bootstrap 4 -->
+    @*<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <script src="~/Dist/js/jquery.validate.min.js"></script>
+        <script src="~/Dist/js/jquery.validate.unobtrusive.min.js"></script>*@
+    @*<link href="~/plugins/toastr/toastr.min.css" rel="stylesheet" />*@
+    @*<script src="~/plugins/toastr/toastr.min.js"></script>
+        <!-- ChartJS -->
+        <script src="~/plugins/chart.js/Chart.min.js"></script>
+        <!-- Sparkline -->
+        @*<script src="~/plugins/sparklines/sparkline.js"></script>*@
+    <!-- Select2 -->
+    @*<script src="../../plugins/select2/js/select2.full.min.js"></script>*@
+    <!-- JQVMap -->
+    @*<script src="~/plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="~/plugins/jqvmap/maps/jquery.vmap.world.js"></script>*@
+    <!-- jQuery Knob Chart -->
+    @*<script src="~/plugins/jquery-knob/jquery.knob.min.js"></script>*@
+    <!-- daterangepicker -->
+    @*<script src="~/plugins/moment/moment.min.js"></script>
+        <script src="~/plugins/daterangepicker/daterangepicker.js"></script>*@
+    <!-- Tempusdominus Bootstrap 4 -->
+    @*<script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Summernote -->
+        <script src="~/plugins/summernote/summernote-bs4.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- SweetAlert2 -->*@
+    @*<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/dist/js/adminlte.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="~/dist/js/pages/dashboard.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="~/dist/js/demo.js"></script>*@
+
+    <script>
+        //$("#logout").click(function () {
+        //    $.post("/account/Logout", function (data) {
+        //        window.location.href = data.url;
+        //    });
+        //});
+
+        //$(document).ready(function () {
+
+        function validate(formid, e) {
+
+            // alert(formid);
+            event.preventDefault();
+            var form = $("#" + formid);
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+
+        function OnSuccess(data) {
+
+            if (data.statuscode == '200' && data.flag == true) {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                Command: toastr["success"]("Completed")
+                setTimeout(function () { window.location.href = data.url; }, 3000);
+
+            }
+            else {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                Command: toastr["error"]("Failed")
+            }
+
+
+        }
+        function OnFailure(data) {
+            alert("System Error");
+        }
+
+            //})
+    </script>
+
+    document.body.style.zoom = "60%";
+    @RenderSection("scripts", required: false)
+</body>
+</html>

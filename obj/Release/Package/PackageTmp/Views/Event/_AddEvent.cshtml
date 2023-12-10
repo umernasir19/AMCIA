@@ -1,0 +1,106 @@
+﻿﻿
+@model FL_ACME.Models.ViewModels.Event_Property
+@{
+    Layout = null;
+}
+<div class="card-body">
+    @*<form role="form" id="formaddtype">*@
+    @using (Ajax.BeginForm("AddUpdate", "Event", FormMethod.Post, new AjaxOptions { OnBegin = "return  validate('addupdateform');", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }, new { @id = "addupdateform", enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Event Name:</label>
+                    @Html.EditorFor(model => model.Event_Name, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Event_Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Event Location:</label>
+                    @Html.EditorFor(model => model.Event_Location, new { htmlAttributes = new { @placeholder = " Location", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Event_Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Event Date Urdu:</label>
+                    @Html.EditorFor(model => model.Event_Date_Urdu, new { htmlAttributes = new { @placeholder = "Lat", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Event_Date_Urdu, "", new { @class = "text-danger" })
+
+
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Event Date Eng:</label>
+                    @Html.EditorFor(model => model.Event_Date_Eng, new { htmlAttributes = new { @placeholder = "Long", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Event_Date_Eng, "", new { @class = "text-danger" })
+
+
+            </div>
+            @Html.HiddenFor(model => model.Event_Id)
+        </div>
+        @*<<div class="row">
+            <div class="col-sm-12">
+               
+                <div class="form-group">
+                    <label>Event Name in Urdu:</label>
+                    @Html.EditorFor(model => model.n, new { htmlAttributes = new { @placeholder = " Location", @class = "form-control" } })
+                   
+                </div>
+                @Html.ValidationMessageFor(model => model.Masjid_Lat, "", new { @class = "text-danger" })
+
+
+            </div>
+
+        </div>*@
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Upload Image:</label>
+                    @* @Html.TextBoxFor(model => model.f, new { htmlAttributes = new { @placeholder = "Lat", @class = "form-control" } })*@
+                    <input type="file" class="form-control" id="ImageFile" accept="image/*">
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="card-footer justify-content-between">
+            <div class="row col-md-12">
+
+                <div class="col-md-12">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        @*<input type="button" value="save" id="btnsavemasjid" class="btn btn-primary" />*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+<script>
+   
+</script>

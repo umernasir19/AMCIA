@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FL_ACMEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FL_ARTICLE">
+    <Key>
+      <PropertyRef Name="Aritcle_ID" />
+    </Key>
+    <Property Name="Aritcle_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Article_Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="Article_Descr" Type="text" />
+    <Property Name="Article_Notes" Type="nvarchar" MaxLength="200" />
+    <Property Name="Article_KeyPoints" Type="text" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="DateCreated" Type="date" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="FL_AZKAR">
+    <Key>
+      <PropertyRef Name="Azkar_ID" />
+    </Key>
+    <Property Name="Azkar_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Azkar_Name" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Azkar_Arabic" Type="nvarchar(max)" />
+    <Property Name="Azkar_Eng" Type="varchar" MaxLength="200" />
+    <Property Name="Azkar_Urdu" Type="nvarchar(max)" />
+    <Property Name="Azkar_Count" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FL_EVENTS">
+    <Key>
+      <PropertyRef Name="Event_Id" />
+    </Key>
+    <Property Name="Event_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Event_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Event_Date_Eng" Type="date" />
+    <Property Name="Event_Date_Urdu" Type="date" />
+    <Property Name="Event_Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="DateCreated" Type="date" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="FL_MASJID">
+    <Key>
+      <PropertyRef Name="MAsjid_ID" />
+    </Key>
+    <Property Name="MAsjid_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Masjid_Title" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Masjid_Descr" Type="text" />
+    <Property Name="Masjid_Location" Type="text" />
+    <Property Name="Masjid_Lat" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Masjid_Lon" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="Rating" Type="decimal" Precision="3" Scale="2" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="FL_PROJECT">
+    <Key>
+      <PropertyRef Name="Project_ID" />
+    </Key>
+    <Property Name="Project_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Project_Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="Project_Date" Type="date" />
+    <Property Name="Project_Details" Type="text" />
+    <Property Name="Project_FB_Link" Type="text" />
+    <Property Name="Project_Insta_Link" Type="text" />
+    <Property Name="Project_YT_Link" Type="text" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="DateCreated" Type="date" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="FL_Project_Images">
+    <Key>
+      <PropertyRef Name="Image_ID" />
+    </Key>
+    <Property Name="Image_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Project_ID" Type="int" />
+    <Property Name="ImagePAth" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Projecct_Images">
+    <Key>
+      <PropertyRef Name="Image_ID" />
+    </Key>
+    <Property Name="Image_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Project_id" Type="int" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="10" />
+    <Property Name="InsertionDate" Type="datetime" Nullable="false" />
+    <Property Name="LastModified" Type="datetime" />
+  </EntityType>
+  <Function Name="sp_GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetUserByIDPAss" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Masjid_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="FL_ACMEModelStoreContainer">
+    <EntitySet Name="FL_ARTICLE" EntityType="Self.FL_ARTICLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FL_AZKAR" EntityType="Self.FL_AZKAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FL_EVENTS" EntityType="Self.FL_EVENTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FL_MASJID" EntityType="Self.FL_MASJID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FL_PROJECT" EntityType="Self.FL_PROJECT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FL_Project_Images" EntityType="Self.FL_Project_Images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projecct_Images" EntityType="Self.Projecct_Images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

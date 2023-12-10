@@ -1,0 +1,174 @@
+﻿﻿@model FL_ACME.Models.ViewModels.Azkar_Property
+@{
+    Layout = null;
+}
+<div class="card-body">
+    @using (Ajax.BeginForm("AddUpdate", "Azkar", FormMethod.Post, new AjaxOptions { OnBegin = "return  validate('addupdateform');", OnSuccess = "onSuccess", OnFailure = "OnFailure" }, new { @id = "addupdateform" }))
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Azkar Name:</label>
+                    @Html.EditorFor(model => model.Azkar_Name, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Azkar_Name, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Azkar Sorat Arabic:</label>
+                    @Html.TextAreaFor(model => model.Azkar_Arabic, new { @class = "form-control", rows = "3" })
+                    @*@Html.TextAreaFor(model => model.Azkar_Arabic, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })*@
+                    @*<textarea class="form-control" cols="12"></textarea>*@
+                    @*  @Html.EditorFor(model => model.Masjid_Title, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })*@
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Azkar_Arabic, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Azkar English Meaning:</label>
+                    @Html.EditorFor(model => model.Azkar_Eng, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Azkar_Eng, "", new { @class = "text-danger" })
+
+
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Azkar Urdu Meaning:</label>
+                    @Html.EditorFor(model => model.Azkar_Urdu, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Azkar_Urdu, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Count :</label>
+                    @Html.EditorFor(model => model.Azkar_Count, new { htmlAttributes = new { @placeholder = "Count", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Azkar_Count, "", new { @class = "text-danger" })
+
+
+            </div>
+            @Html.HiddenFor(model => model.Azkar_ID)
+        </div>
+
+        <!--<div class="row">
+        <div class="col-sm-12">-->
+        <!-- text input -->
+        <!--<div class="form-group">
+                    <label>Description:</label>
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>-->
+        <div class="card-footer justify-content-between">
+            <div class="row col-md-12">
+
+                <div class="col-md-12">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Submit" id="btnsave" class="btn btn-primary" />
+                        @*<input type="button" value="save" id="btnsavemasjid" class="btn btn-primary" />*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+<script>
+    function validate(formid, e) {
+
+        // alert(formid);
+        event.preventDefault();
+        var form = $("#" + formid);
+        $.validator.unobtrusive.parse(form);
+        if ($(form).valid()) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    function onSuccess(data) {
+
+        if (data.statuscode == '200' && data.flag == true) {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            Command: toastr["success"]("Completed")
+            setTimeout(function () { window.location.href = data.url; }, 3000);
+
+        }
+        else {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            Command: toastr["error"]("Failed")
+        }
+
+
+    }
+    function OnFailure(data) {
+        alert("System Error");
+    }
+</script>

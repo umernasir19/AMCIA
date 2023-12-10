@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FL_ACMEModelStoreContainer" CdmEntityContainer="FL_ACMEEntities">
+    <EntitySetMapping Name="FL_AZKAR">
+      <EntityTypeMapping TypeName="FL_ACMEModel.FL_AZKAR">
+        <MappingFragment StoreEntitySet="FL_AZKAR">
+          <ScalarProperty Name="Azkar_ID" ColumnName="Azkar_ID" />
+          <ScalarProperty Name="Azkar_Name" ColumnName="Azkar_Name" />
+          <ScalarProperty Name="Azkar_Arabic" ColumnName="Azkar_Arabic" />
+          <ScalarProperty Name="Azkar_Eng" ColumnName="Azkar_Eng" />
+          <ScalarProperty Name="Azkar_Urdu" ColumnName="Azkar_Urdu" />
+          <ScalarProperty Name="Azkar_Count" ColumnName="Azkar_Count" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FL_MASJID">
+      <EntityTypeMapping TypeName="FL_ACMEModel.FL_MASJID">
+        <MappingFragment StoreEntitySet="FL_MASJID">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="MAsjid_ID" ColumnName="MAsjid_ID" />
+          <ScalarProperty Name="Masjid_Title" ColumnName="Masjid_Title" />
+          <ScalarProperty Name="Masjid_Descr" ColumnName="Masjid_Descr" />
+          <ScalarProperty Name="Masjid_Location" ColumnName="Masjid_Location" />
+          <ScalarProperty Name="Masjid_Lat" ColumnName="Masjid_Lat" />
+          <ScalarProperty Name="Masjid_Lon" ColumnName="Masjid_Lon" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="FL_ACMEModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InsertionDate" ColumnName="InsertionDate" />
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAllUsers" FunctionName="FL_ACMEModel.Store.sp_GetAllUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FL_ACMEModel.sp_GetAllUsers_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InsertionDate" ColumnName="InsertionDate" />
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetUserByIDPAss" FunctionName="FL_ACMEModel.Store.sp_GetUserByIDPAss">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FL_ACMEModel.sp_GetUserByIDPAss_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InsertionDate" ColumnName="InsertionDate" />
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Masjid_GetALL" FunctionName="FL_ACMEModel.Store.sp_Masjid_GetALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FL_ACMEModel.sp_Masjid_GetALL_Result">
+          <ScalarProperty Name="MAsjid_ID" ColumnName="MAsjid_ID" />
+          <ScalarProperty Name="Masjid_Title" ColumnName="Masjid_Title" />
+          <ScalarProperty Name="Masjid_Descr" ColumnName="Masjid_Descr" />
+          <ScalarProperty Name="Masjid_Location" ColumnName="Masjid_Location" />
+          <ScalarProperty Name="Masjid_Lat" ColumnName="Masjid_Lat" />
+          <ScalarProperty Name="Masjid_Lon" ColumnName="Masjid_Lon" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="FL_EVENTS">
+      <EntityTypeMapping TypeName="FL_ACMEModel.FL_EVENTS">
+        <MappingFragment StoreEntitySet="FL_EVENTS">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Event_Location" ColumnName="Event_Location" />
+          <ScalarProperty Name="Event_Date_Urdu" ColumnName="Event_Date_Urdu" />
+          <ScalarProperty Name="Event_Date_Eng" ColumnName="Event_Date_Eng" />
+          <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
+          <ScalarProperty Name="Event_Id" ColumnName="Event_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FL_ARTICLE">
+      <EntityTypeMapping TypeName="FL_ACMEModel.FL_ARTICLE">
+        <MappingFragment StoreEntitySet="FL_ARTICLE">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Article_KeyPoints" ColumnName="Article_KeyPoints" />
+          <ScalarProperty Name="Article_Notes" ColumnName="Article_Notes" />
+          <ScalarProperty Name="Article_Descr" ColumnName="Article_Descr" />
+          <ScalarProperty Name="Article_Title" ColumnName="Article_Title" />
+          <ScalarProperty Name="Aritcle_ID" ColumnName="Aritcle_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FL_PROJECT">
+      <EntityTypeMapping TypeName="FL_ACMEModel.FL_PROJECT">
+        <MappingFragment StoreEntitySet="FL_PROJECT">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Project_YT_Link" ColumnName="Project_YT_Link" />
+          <ScalarProperty Name="Project_Insta_Link" ColumnName="Project_Insta_Link" />
+          <ScalarProperty Name="Project_FB_Link" ColumnName="Project_FB_Link" />
+          <ScalarProperty Name="Project_Details" ColumnName="Project_Details" />
+          <ScalarProperty Name="Project_Date" ColumnName="Project_Date" />
+          <ScalarProperty Name="Project_Title" ColumnName="Project_Title" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projecct_Images">
+      <EntityTypeMapping TypeName="FL_ACMEModel.Projecct_Images">
+        <MappingFragment StoreEntitySet="Projecct_Images">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Project_id" ColumnName="Project_id" />
+          <ScalarProperty Name="Image_ID" ColumnName="Image_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FL_Project_Images">
+      <EntityTypeMapping TypeName="FL_ACMEModel.FL_Project_Images">
+        <MappingFragment StoreEntitySet="FL_Project_Images">
+          <ScalarProperty Name="ImagePAth" ColumnName="ImagePAth" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+          <ScalarProperty Name="Image_ID" ColumnName="Image_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

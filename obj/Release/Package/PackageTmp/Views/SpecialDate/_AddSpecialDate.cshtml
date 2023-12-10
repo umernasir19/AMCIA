@@ -1,0 +1,123 @@
+﻿﻿
+
+@model FL_ACME.Models.ViewModels.Masjid_Property
+@{
+    Layout = null;
+}
+<div class="card-body">
+    @*<form role="form" id="formaddtype">*@
+    @using (Ajax.BeginForm("AddUpdate", "Masjid", FormMethod.Post, new AjaxOptions { OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Event Name:</label>
+                    @Html.EditorFor(model => model.Masjid_Title, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Masjid_Title, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- text input -->
+                <div id="calendar-converter">
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="card-footer justify-content-between">
+            <div class="row col-md-12">
+
+                <div class="col-md-12">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        @*<input type="submit" value="Submit" class="btn btn-primary" />*@
+                        <input type="button" value="save" id="btnsavemasjid" class="btn btn-primary" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+<script>
+    $("#btnsavemasjid").click(function () {
+        Command: toastr["success"]("success", "Saved")
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        window.location.href = "/Masjid/Masjid";
+    });
+
+    var cal1 = new Calendar(false, 1, false, true),
+      cal2 = new Calendar(true, 0, false, true),
+      cal1Mode = cal1.isHijriMode(),
+      cal2Mode = cal2.isHijriMode();
+    document.getElementById('calendar-converter').appendChild(cal1.getElement());
+    document.getElementById('calendar-converter').appendChild(cal2.getElement());
+    cal1.setDisplayStyle('inline-block');
+    cal2.setDisplayStyle('inline-block');
+    cal2.getElement().style.marginLeft = '20px';
+    cal1.show();
+    cal2.show();
+
+    cal1.callback = function () {
+        if (cal1Mode !== cal1.isHijriMode()) {
+            cal2.disableCallback(true);
+            cal2.changeDateMode();
+            cal2.disableCallback(false);
+            cal1Mode = cal1.isHijriMode();
+            cal2Mode = cal2.isHijriMode();
+        } // prevent from infinite loop when user change the calendar mode
+        else
+            cal2.setTime(cal1.getTime());
+    };
+
+    cal2.callback = function () {
+        if (cal2Mode !== cal2.isHijriMode()) {
+            cal1.disableCallback(true);
+            cal1.changeDateMode();
+            cal1.disableCallback(false);
+            cal1Mode = cal1.isHijriMode();
+            cal2Mode = cal2.isHijriMode();
+        } // prevent from infinite loop when user change the calendar mode
+        else
+            cal1.setTime(cal2.getTime());
+    };
+
+    cal1.onHide = function () {
+        cal1.show(); // prevent the widget from being closed
+    };
+
+    cal2.onHide = function () {
+        cal2.show(); // prevent the widget from being closed
+    };
+</script>

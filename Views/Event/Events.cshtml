@@ -1,0 +1,217 @@
+﻿﻿@model IEnumerable<FL_ACME.Models.ViewModels.Event_Property>
+﻿
+@{
+    ViewBag.Title = "Event";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Events</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Events</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title pull-right"><input type="button" id="btnAddmsjid" class="btn btn-primary" value="Add New" /></h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Event Name</th>
+                                <th>Event Date Urdu</th>
+                                <th>Event Date</th>
+                                <th>Created By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int i = 1;
+                                foreach (var azkar in Model)
+                                {
+
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@azkar.Event_Name</td>
+                                        <td>@azkar.Event_Date_Urdu</td>
+                                        <td>@azkar.Event_Date_Eng</td>
+                                        <td><img src="@azkar.ImagePath" height="100%" width="100%"> </td>
+                                        <td>
+                                            <div class="row col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="text-info" onclick="ViewEdit('@azkar.Event_Id')"><i class="fa fa-eye"></i></a>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="text-danger" onclick="ConfirmToDelete('@azkar.Event_Id')"><i class="fa fa-trash"></i></a>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+
+<div class="modal fade" id="AddMasjidModel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Event</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="Masjdadmodelbody">
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+@section scripts{
+
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+
+        });
+        $("#btnAddmsjid").click(function () {
+            //showLoading();
+            $("#Masjdadmodelbody").load("/Event/AddEvent", function (e) {
+                $("#AddMasjidModel").modal("show");
+                //hideLoading();
+            });
+        });
+
+
+        function ConfirmToDelete(id) {
+            $('#deleteLink').click(function () {
+                /*window.location.href = "/Azkar/Delete/" + id;*/
+
+
+                $.post("/Event/Delete/" + id, function (data) {
+                    if (data.statuscode == '200' && data.flag == true) {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        Command: toastr["success"]("Completed")
+                        setTimeout(function () { window.location.href = data.url; }, 3000);
+
+                    }
+                    else {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        Command: toastr["error"]("Failed")
+                    }
+
+                });
+            });
+            $('#ConfirmModal').show();
+        }
+
+        function ViewEdit(ID) {
+            //showLoading();
+            var url = "/Event/AddEvent?Id=" + ID;
+
+            $("#Masjdadmodelbody").load(url, function (e) {
+                var id = $('#MAsjid_ID').val();
+                if (id > 0) {
+                    $('#btnsavemasjid').html("update ");
+                }
+                $("#AddMasjidModel").modal("show");
+                // hideLoading();
+            });
+        }
+
+        function ShowProduct(ID) {
+            //showLoading();
+            var url = "/Events/AddEvent?Id=" + 1;
+
+            $("#Masjdadmodelbody").load(url, function (e) {
+                var id = $('#MAsjid_ID').val();
+                if (id > 0) {
+                    $('#btnsavemasjid').html("update ");
+                }
+                $("#AddMasjidModel").modal("show");
+                // hideLoading();
+            });
+        }
+    </script>
+}

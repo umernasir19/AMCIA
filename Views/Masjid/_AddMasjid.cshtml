@@ -1,0 +1,204 @@
+﻿﻿@model FL_ACME.Models.ViewModels.Masjid_Property
+@{
+    Layout = null;
+}
+
+<div class="card-body">
+    @*<form role="form" id="formaddtype">*@
+    @using (Ajax.BeginForm("AddUpdate", "Masjid", FormMethod.Post, new AjaxOptions {OnBegin= "return validate('addupdateform');", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }, new { @id = "addupdateform", enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Masjid Name:</label>
+                    @Html.EditorFor(model => model.Masjid_Title, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Masjid_Title, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Masjid Location:</label>
+                    @Html.EditorFor(model => model.Masjid_Location, new { htmlAttributes = new { @placeholder = " Location", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Masjid_Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Location Lat:</label>
+                    @Html.EditorFor(model => model.Masjid_Lat, new { htmlAttributes = new { @placeholder = "Lat", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Masjid_Lat, "", new { @class = "text-danger" })
+
+
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Location Long:</label>
+                    @Html.EditorFor(model => model.Masjid_Lon, new { htmlAttributes = new { @placeholder = "Long", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Masjid_Lon, "", new { @class = "text-danger" })
+
+
+            </div>
+            @Html.HiddenFor(model => model.MAsjid_ID)
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Masjid Description:</label>
+                    @Html.TextAreaFor(model => model.Masjid_Descr, new { @area = "13", @class = "form-control" })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Masjid_Location, "", new { @class = "text-danger" })
+
+
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div id="star" class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Masjid Rating:</label>
+                    <div class="demo"></div>
+                    @Html.HiddenFor(model => model.Rating)
+                </div>
+
+
+
+
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Upload Image:</label>
+                    @*@Html.TextBoxFor(m => m.ImageFile, new { type = "file" })*@
+                    @* @Html.TextBoxFor(model => model.f, new { htmlAttributes = new { @placeholder = "Lat", @class = "form-control" } })*@
+                    <input type="file" class="form-control" id="ImageFile" accept="image/*">
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="card-footer justify-content-between">
+            <div class="row col-md-12">
+
+                <div class="col-md-12">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        @*<input type="button" value="save" id="btnsavemasjid" class="btn btn-primary" />*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+
+<script>
+  
+    function validate(formid, e) {
+
+        // alert(formid);
+        event.preventDefault();
+        var form = $("#" + formid);
+        $.validator.unobtrusive.parse(form);
+        if ($(form).valid()) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    function onSuccess(data) {
+
+        if (data.statuscode == '200' && data.flag == true) {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            Command: toastr["success"]("Completed")
+            setTimeout(function () { window.location.href = data.url; }, 3000);
+
+        }
+        else {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            Command: toastr["error"]("Failed")
+        }
+
+
+    }
+    function OnFailure(data) {
+        alert("System Error");
+    }
+
+
+    $(document).ready(function () {
+        
+        $('.demo').raty({
+            path: '/plugins/raty/images',
+            score: $('#Rating').val()
+        });
+    });
+        // load whatever you need here
+        
+
+    $(".demo > img").click(function () {
+        var score = $(this).attr("alt");
+        $('#Rating').val(score);                                           
+                                                   
+    });
+
+
+</script>
