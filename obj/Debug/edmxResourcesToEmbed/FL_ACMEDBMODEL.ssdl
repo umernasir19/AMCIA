@@ -81,6 +81,19 @@
     <Property Name="Project_ID" Type="int" />
     <Property Name="ImagePAth" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="FL_TIMELINE">
+    <Key>
+      <PropertyRef Name="Timeline_Id" />
+    </Key>
+    <Property Name="Timeline_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TimeLine_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Timeline_Short" Type="nvarchar" MaxLength="50" />
+    <Property Name="TimeLine_Urdu" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="DateCreated" Type="date" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
   <EntityType Name="Projecct_Images">
     <Key>
       <PropertyRef Name="Image_ID" />
@@ -113,6 +126,7 @@
     <EntitySet Name="FL_MASJID" EntityType="Self.FL_MASJID" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_PROJECT" EntityType="Self.FL_PROJECT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_Project_Images" EntityType="Self.FL_Project_Images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FL_TIMELINE" EntityType="Self.FL_TIMELINE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Projecct_Images" EntityType="Self.Projecct_Images" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

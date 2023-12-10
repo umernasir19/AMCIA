@@ -1,0 +1,102 @@
+﻿@model  FL_ACME.Models.ViewModels.TimeLine_Property
+@{
+    Layout = null;
+}
+<div class="card-body">
+    @*<form role="form" id="formaddtype">*@
+@using (Ajax.BeginForm("AddUpdate", "News", FormMethod.Post, new AjaxOptions { OnBegin = "return validate('addupdateform');", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }, new { @id = "addupdateform", enctype = "multipart/form-data" }))
+{
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>TimeLine Name:</label>
+                    @Html.EditorFor(model => model.TimeLine_Name, new { htmlAttributes = new { @placeholder = "Name", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.TimeLine_Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Timeline Short Description:</label>
+                    @Html.EditorFor(model => model.Timeline_Short, new { htmlAttributes = new { @placeholder = "Short Descs", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Timeline_Short, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>TimeLine In Urdu:</label>
+                    @Html.EditorFor(model => model.TimeLine_Urdu, new { htmlAttributes = new { @placeholder = "Lat", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.TimeLine_Urdu, "", new { @class = "text-danger" })
+
+
+            </div>
+            
+            @Html.HiddenFor(model => model.Timeline_Id)
+        </div>
+        
+
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Upload Image:</label>
+                    @* @Html.TextBoxFor(model => model.f, new { htmlAttributes = new { @placeholder = "Lat", @class = "form-control" } })*@
+                    <input type="file" class="form-control" id="ImageFile" accept="image/*">
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="card-footer justify-content-between">
+            <div class="row col-md-12">
+
+                <div class="col-md-12">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        @*<input type="button" value="save" id="btnsavemasjid" class="btn btn-primary" />*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+<script>
+    $("#btnsavemasjid").click(function () {
+        Command: toastr["success"]("success", "Saved")
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        window.location.href = "/Masjid/Masjid";
+    });
+</script>

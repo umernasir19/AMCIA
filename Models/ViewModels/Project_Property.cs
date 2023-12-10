@@ -21,5 +21,7 @@ namespace FL_ACME.Models.ViewModels
         public bool Status { get; set; }
         public DateTime DateCreated { get; set; }
         public int CreatedBy { get; set; }
+
+        public List<FL_Project_Images> ProjectImages { get; set; }
     }
 }

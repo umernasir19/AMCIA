@@ -19,7 +19,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/17/2020 01:38:56</publishTime>
     </File>
     <File Include="bin/FL_ACME.dll">
-      <publishTime>12/09/2023 02:19:54</publishTime>
+      <publishTime>12/11/2023 00:35:12</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNetCore.Http.Abstractions.dll">
       <publishTime>05/17/2018 01:18:12</publishTime>
@@ -433,7 +433,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2023 16:24:16</publishTime>
     </File>
     <File Include="FL_ACMEDBMODEL.edmx.diagram">
-      <publishTime>12/08/2023 22:15:48</publishTime>
+      <publishTime>12/10/2023 23:06:36</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>10/02/2023 16:24:16</publishTime>
@@ -1705,13 +1705,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/07/2023 23:59:22</publishTime>
     </File>
     <File Include="Views/Event/_AddEvent.cshtml">
-      <publishTime>12/07/2023 00:25:08</publishTime>
+      <publishTime>12/10/2023 23:19:14</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>11/28/2023 13:00:12</publishTime>
     </File>
     <File Include="Views/Masjid/Masjid.cshtml">
-      <publishTime>11/30/2023 21:54:56</publishTime>
+      <publishTime>12/10/2023 23:19:29</publishTime>
     </File>
     <File Include="Views/Masjid/_AddMasjid.cshtml">
       <publishTime>12/06/2023 01:13:38</publishTime>
@@ -1721,6 +1721,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Namaz/_AddNamaz.cshtml">
       <publishTime>12/01/2023 00:58:56</publishTime>
+    </File>
+    <File Include="Views/News/News.cshtml">
+      <publishTime>12/10/2023 23:27:20</publishTime>
+    </File>
+    <File Include="Views/News/_AddNEWS.cshtml">
+      <publishTime>12/10/2023 23:24:35</publishTime>
     </File>
     <File Include="Views/Project/Project.cshtml">
       <publishTime>12/09/2023 01:13:11</publishTime>
@@ -1741,7 +1747,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2023 01:08:32</publishTime>
     </File>
     <File Include="Views/SpecialDate/_AddSpecialDate.cshtml">
-      <publishTime>12/01/2023 01:15:20</publishTime>
+      <publishTime>12/11/2023 00:32:26</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>11/28/2023 18:30:50</publishTime>
@@ -1750,7 +1756,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2023 13:00:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/09/2023 01:57:26</publishTime>
+      <publishTime>12/11/2023 00:35:19</publishTime>
     </File>
   </ItemGroup>
 </Project>

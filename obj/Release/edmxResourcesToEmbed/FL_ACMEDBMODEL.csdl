@@ -56,6 +56,7 @@
     <EntitySet Name="FL_PROJECT" EntityType="FL_ACMEModel.FL_PROJECT" />
     <EntitySet Name="Projecct_Images" EntityType="FL_ACMEModel.Projecct_Images" />
     <EntitySet Name="FL_Project_Images" EntityType="FL_ACMEModel.FL_Project_Images" />
+    <EntitySet Name="FL_TIMELINE" EntityType="FL_ACMEModel.FL_TIMELINE" />
   </EntityContainer>
   <ComplexType Name="sp_GetAllUsers_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
@@ -142,5 +143,18 @@
     <Property Name="Image_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Project_ID" Type="Int32" />
     <Property Name="ImagePAth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="FL_TIMELINE">
+    <Key>
+      <PropertyRef Name="Timeline_Id" />
+    </Key>
+    <Property Name="Timeline_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TimeLine_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Timeline_Short" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TimeLine_Urdu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="0" />
+    <Property Name="CreatedBy" Type="Int32" />
   </EntityType>
 </Schema>

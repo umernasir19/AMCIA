@@ -13,6 +13,7 @@
         <EntityTypeShape EntityType="FL_ACMEModel.FL_PROJECT" Width="1.5" PointX="5.375" PointY="3.75" />
         <EntityTypeShape EntityType="FL_ACMEModel.Projecct_Images" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="FL_ACMEModel.FL_Project_Images" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="FL_ACMEModel.FL_TIMELINE" Width="1.5" PointX="5.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

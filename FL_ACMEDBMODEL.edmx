@@ -86,6 +86,19 @@
           <Property Name="Project_ID" Type="int" />
           <Property Name="ImagePAth" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="FL_TIMELINE">
+          <Key>
+            <PropertyRef Name="Timeline_Id" />
+          </Key>
+          <Property Name="Timeline_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeLine_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Timeline_Short" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimeLine_Urdu" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="DateCreated" Type="date" />
+          <Property Name="CreatedBy" Type="int" />
+        </EntityType>
         <EntityType Name="Projecct_Images">
           <Key>
             <PropertyRef Name="Image_ID" />
@@ -118,6 +131,7 @@
           <EntitySet Name="FL_MASJID" EntityType="Self.FL_MASJID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_PROJECT" EntityType="Self.FL_PROJECT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_Project_Images" EntityType="Self.FL_Project_Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FL_TIMELINE" EntityType="Self.FL_TIMELINE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projecct_Images" EntityType="Self.Projecct_Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -181,6 +195,7 @@
           <EntitySet Name="FL_PROJECT" EntityType="FL_ACMEModel.FL_PROJECT" />
           <EntitySet Name="Projecct_Images" EntityType="FL_ACMEModel.Projecct_Images" />
           <EntitySet Name="FL_Project_Images" EntityType="FL_ACMEModel.FL_Project_Images" />
+          <EntitySet Name="FL_TIMELINE" EntityType="FL_ACMEModel.FL_TIMELINE" />
         </EntityContainer>
         <ComplexType Name="sp_GetAllUsers_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -267,6 +282,19 @@
           <Property Name="Image_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Project_ID" Type="Int32" />
           <Property Name="ImagePAth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FL_TIMELINE">
+          <Key>
+            <PropertyRef Name="Timeline_Id" />
+          </Key>
+          <Property Name="Timeline_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeLine_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Timeline_Short" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimeLine_Urdu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -418,6 +446,20 @@
                 <ScalarProperty Name="ImagePAth" ColumnName="ImagePAth" />
                 <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
                 <ScalarProperty Name="Image_ID" ColumnName="Image_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FL_TIMELINE">
+            <EntityTypeMapping TypeName="FL_ACMEModel.FL_TIMELINE">
+              <MappingFragment StoreEntitySet="FL_TIMELINE">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="TimeLine_Urdu" ColumnName="TimeLine_Urdu" />
+                <ScalarProperty Name="Timeline_Short" ColumnName="Timeline_Short" />
+                <ScalarProperty Name="TimeLine_Name" ColumnName="TimeLine_Name" />
+                <ScalarProperty Name="Timeline_Id" ColumnName="Timeline_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

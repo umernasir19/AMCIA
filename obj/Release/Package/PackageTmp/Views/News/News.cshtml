@@ -1,0 +1,205 @@
+﻿﻿﻿@model List<FL_ACME.Models.ViewModels.TimeLine_Property>
+
+@{
+    ViewBag.Title = "Namaz";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Timeline</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Timeline</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title pull-right"><input type="button" id="btnAddmsjid" class="btn btn-primary" value="Add New" /></h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Timeline Name</th>
+                                <th>Time Line in Urdu(s)</th>
+                                <th>Short Description</th>
+                              
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int i = 1;
+                                foreach (var masjid in Model)
+                                {
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>
+                                            @masjid.TimeLine_Name
+                                        </td>
+                                        <td>@masjid.TimeLine_Urdu</td>
+                                        <td> @masjid.Timeline_Short
+                                        </td>
+                                       
+                                        <td>
+                                            <div class="row col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="text-info" onclick="ViewEdit(@masjid.Timeline_Id)"><i class="fa fa-eye"></i></a>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="text-danger" onclick="ConfirmToDelete(@masjid.Timeline_Id)"><i class="fa fa-trash"></i></a>
+                                                    <input type="submit" class="d-none" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+
+<div class="modal fade" id="AddnamazModel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add TimeLine</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="Namazdmodelbody">
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+@section scripts{
+
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+
+        });
+        $("#btnAddmsjid").click(function () {
+                //showLoading();
+            $("#Namazdmodelbody").load("/News/AddNews", function (e) {
+                $("#AddnamazModel").modal("show");
+                    //hideLoading();
+                });
+        });
+
+        function ConfirmToDelete(id) {
+            $('#deleteLink').click(function () {
+                /*window.location.href = "/Azkar/Delete/" + id;*/
+
+
+                $.post("/News/Delete/" + id, function (data) {
+                    if (data.statuscode == '200' && data.flag == true) {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        Command: toastr["success"]("Completed")
+                        setTimeout(function () { window.location.href = data.url; }, 3000);
+
+                    }
+                    else {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        Command: toastr["error"]("Failed")
+                    }
+
+                });
+            });
+            $('#ConfirmModal').show();
+        }
+
+        function ViewEdit(ID) {
+            //showLoading();
+            var url = "/News/AddNews?Id=" + ID;
+
+            $("#Namazdmodelbody").load(url, function (e) {
+                var id = $('#MAsjid_ID').val();
+                if (id > 0) {
+
+                    $('#btnsave').html("update ");
+                }
+                $("#AddnamazModel").modal("show");
+                // hideLoading();
+            });
+        }
+
+    </script>
+}

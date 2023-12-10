@@ -148,5 +148,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FL_TIMELINE">
+      <EntityTypeMapping TypeName="FL_ACMEModel.FL_TIMELINE">
+        <MappingFragment StoreEntitySet="FL_TIMELINE">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="TimeLine_Urdu" ColumnName="TimeLine_Urdu" />
+          <ScalarProperty Name="Timeline_Short" ColumnName="Timeline_Short" />
+          <ScalarProperty Name="TimeLine_Name" ColumnName="TimeLine_Name" />
+          <ScalarProperty Name="Timeline_Id" ColumnName="Timeline_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

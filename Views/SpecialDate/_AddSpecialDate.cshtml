@@ -85,6 +85,8 @@
     document.getElementById('calendar-converter').appendChild(cal2.getElement());
     cal1.setDisplayStyle('inline-block');
     cal2.setDisplayStyle('inline-block');
+    cal1.id="calEng"
+    cal2.id = "calisl"
     cal2.getElement().style.marginLeft = '20px';
     cal1.show();
     cal2.show();
@@ -96,9 +98,16 @@
             cal2.disableCallback(false);
             cal1Mode = cal1.isHijriMode();
             cal2Mode = cal2.isHijriMode();
+            alert("zz")
         } // prevent from infinite loop when user change the calendar mode
-        else
-            cal2.setTime(cal1.getTime());
+        else {
+            // cal2.setTime(cal1.getTime());
+            cal2.setDate(2023, 1, 1)
+            alert(cal1.getDate())
+            alert(123456)
+            alert(cal2.getDate())
+        }
+           
     };
 
     cal2.callback = function () {
@@ -108,9 +117,12 @@
             cal1.disableCallback(false);
             cal1Mode = cal1.isHijriMode();
             cal2Mode = cal2.isHijriMode();
+
+            alert("zzzzzz")
         } // prevent from infinite loop when user change the calendar mode
         else
             cal1.setTime(cal2.getTime());
+       
     };
 
     cal1.onHide = function () {
@@ -120,4 +132,6 @@
     cal2.onHide = function () {
         cal2.show(); // prevent the widget from being closed
     };
+
+    
 </script>

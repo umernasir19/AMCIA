@@ -668,6 +668,7 @@
     <Compile Include="Controllers_Api\MasjidApiController.cs" />
     <Compile Include="Controllers_Api\NamazApiController.cs" />
     <Compile Include="Controllers_Api\ProjectApiController.cs" />
+    <Compile Include="Controllers_Api\TimelineApiController.cs" />
     <Compile Include="FL_ACMEDBMODEL.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -701,9 +702,13 @@
     <Compile Include="FL_Project_Images.cs">
       <DependentUpon>FL_ACMEDBMODEL.tt</DependentUpon>
     </Compile>
+    <Compile Include="FL_TIMELINE.cs">
+      <DependentUpon>FL_ACMEDBMODEL.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\TimeLine_Property.cs" />
     <Compile Include="Models\ViewModels\Article_Property.cs" />
     <Compile Include="Models\ViewModels\Azkar_Property.cs" />
     <Compile Include="Models\ViewModels\Event_Property.cs" />
@@ -792,6 +797,8 @@
     <Content Include="Views\SpecialDate\SpecialDate.cshtml" />
     <Content Include="Views\Project\_AddProjects.cshtml" />
     <Content Include="Views\Project\Project.cshtml" />
+    <Content Include="Views\News\News.cshtml" />
+    <Content Include="Views\News\_AddNEWS.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -803,7 +810,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="DAL\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\News\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

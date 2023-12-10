@@ -35,6 +35,7 @@ namespace FL_ACME
         public virtual DbSet<FL_PROJECT> FL_PROJECT { get; set; }
         public virtual DbSet<Projecct_Images> Projecct_Images { get; set; }
         public virtual DbSet<FL_Project_Images> FL_Project_Images { get; set; }
+        public virtual DbSet<FL_TIMELINE> FL_TIMELINE { get; set; }
     
         public virtual ObjectResult<sp_GetAllUsers_Result> sp_GetAllUsers()
         {

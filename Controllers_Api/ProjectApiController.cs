@@ -144,6 +144,44 @@ namespace FL_ACME.Controllers_Api
                 return Ok(response);
             }
         }
+
+        [Route("GetAllForMobile")]
+        [HttpGet]
+        public IHttpActionResult GetAllForMobile()
+        {
+            var returnobject = (from proj in db.FL_PROJECT
+                                where proj.Status == true
+                                select new Project_Property
+                                {
+                                    Project_ID = proj.Project_ID,
+                                    Project_Title = proj.Project_Title,
+                                    Project_Details=proj.Project_Details,
+                                    Project_FB_Link=proj.Project_FB_Link,
+                                    Project_Insta_Link=proj.Project_Insta_Link,
+                                    Project_YT_Link=proj.Project_YT_Link,
+                                    //Status=Convert.ToBoolean(proj.Status),
+                                    ProjectImages = db.FL_Project_Images.Where(p => p.Project_ID == proj.Project_ID).ToList()
+                                }).ToList();
+
+            var data = JsonConvert.SerializeObject(returnobject);
+            var datatoreturn = JsonConvert.DeserializeObject<List<Project_Property>>(data);
+
+            if (returnobject.Count > 0)
+            {
+
+                var response = new ResponseClass() { Status = true, ResponseObject = returnobject };
+                return Ok(response);
+            }
+            else
+            {
+                var response = new ResponseClass() { Status = true, ResponseObject = returnobject };
+                return Ok(response);
+            }
+
+
+
+
+        }
     }
 }
 

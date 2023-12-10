@@ -1,4 +1,6 @@
 ﻿using FL_ACME.Models.ViewModels;
+using FL_ACME.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,25 +14,96 @@ namespace FL_ACME.Controllers
         // GET: News
         public ActionResult News()
         {
-            return View();
+            List<TimeLine_Property> objmasjidlist = new List<TimeLine_Property>();
+            var v = Utility.InteractToAPI<ResponseClass>("api/Timeline/GetAll", false, null);
+            if (v != null)
+            {
+                var data = JsonConvert.SerializeObject(v.ResponseObject);
+                objmasjidlist = JsonConvert.DeserializeObject<List<TimeLine_Property>>(data);
+
+
+                return View(objmasjidlist);
+            }
+            else
+
+            {
+                objmasjidlist = new List<TimeLine_Property>();
+                return View(objmasjidlist);
+            }
         }
 
         public ActionResult AddNews(int? id)
         {
-            Masjid_Property objflmsjd = new Masjid_Property();
+            TimeLine_Property objmsjidprop = new TimeLine_Property();
             if (id > 0)
             {
-                objflmsjd.MAsjid_ID = 1;
-                objflmsjd.Masjid_Location = "English meaning of this azkar is bjfbdak";
-                objflmsjd.Masjid_Title = "SubhanALLAH";
-                objflmsjd.Masjid_Lat = Convert.ToDecimal(1.2);
-                objflmsjd.Masjid_Lon = Convert.ToDecimal(1.2);
-                objflmsjd.Masjid_Descr = "Urdu Meaning";
-                objflmsjd.Masjid_Location = "New York";
-                objflmsjd.Rating = Convert.ToDecimal(4);
+                var v = Utility.InteractToAPI<ResponseClass>("api/TimeLine/GetAll", false, null);
+                if (v != null)
+                {
+                    var data = JsonConvert.SerializeObject(v.ResponseObject);
+                    objmsjidprop = JsonConvert.DeserializeObject<List<TimeLine_Property>>(data).Where(p => p.Timeline_Id == id).FirstOrDefault();
+                }
+                else
+                {
 
+                }
+               
             }
-            return PartialView("_AddNEWS", objflmsjd);
+            return PartialView("_AddNEWS", objmsjidprop);
+        }
+
+        [System.Web.Http.HttpPost]
+        public JsonResult AddUpdate(TimeLine_Property objmasjid, FormCollection forms)
+        {
+            try
+            {
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase postedFile = Request.Files[0];
+
+                    var imagsave = Utility.SaveFiles(postedFile);
+                    if (imagsave.Status)
+                    {
+                        objmasjid.ImagePath = imagsave.Message;
+                    }
+                }
+                objmasjid.DateCreated = DateTime.UtcNow;
+                objmasjid.Status = true;
+                // objmasjid.ImageFile = null;
+                var v = Utility.InteractToAPI<ResponseClass>("api/TimeLine/AddUpdate", true, objmasjid);
+                if (v != null)
+                {
+                    return Json(new { data = v, flag = v.Status, statuscode = 200, msg = v.Message, url = "/News/News"}, JsonRequestBehavior.AllowGet);
+                    }
+                else
+                    return Json(new { data = v.ResponseObject, flag = v.Status, statuscode = 500, msg = v.Message, url = "#" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Login = false, statuscode = 400, msg = ex.Message, url = "#" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        public JsonResult Delete(int id)
+        {
+            try
+            {
+                var model = new TimeLine_Property();
+                model.Timeline_Id = id;
+                var v = Utility.InteractToAPI<ResponseClass>("api/Timeline/Delete", true, model);
+                if (v != null)
+                {
+                    // var data = v;// JsonConvert.SerializeObject(v.ResponseObject);
+                    return Json(new { data = v, flag = v.Status, statuscode = 200, msg = v.Message, url = "/News/News" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                    return Json(new { data = v.ResponseObject, flag = v.Status, statuscode = 500, msg = v.Message, url = "#" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "", flag = false, statuscode = 400, msg = ex.InnerException.Message, url = "#" }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
