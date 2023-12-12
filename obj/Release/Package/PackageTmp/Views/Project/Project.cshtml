@@ -52,11 +52,11 @@
                                         </td>
                                         <td>@masjid.ProjectProperty.Project_Details</td>
                                         <td> @masjid.ProjectProperty.Project_Date</td>
-                                        <td>
+                                        <td class="img-responsive img-thumbnail">
                                         @{
                                             foreach (var img in masjid.ProjectImageList)
                                             {
-                                              <img src="@img.ImagePath" class="img-responsive img-thumbnail">
+                                              <img src="@img.ImagePath" width="20%" class="img-responsive img-thumbnail">
                                             }
                                         }
                                         </td>

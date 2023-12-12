@@ -24,7 +24,7 @@
             <PropertyRef Name="Azkar_ID" />
           </Key>
           <Property Name="Azkar_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Azkar_Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Azkar_Name" Type="nvarchar(max)" />
           <Property Name="Azkar_Arabic" Type="nvarchar(max)" />
           <Property Name="Azkar_Eng" Type="varchar" MaxLength="200" />
           <Property Name="Azkar_Urdu" Type="nvarchar(max)" />
@@ -86,6 +86,18 @@
           <Property Name="Project_ID" Type="int" />
           <Property Name="ImagePAth" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="FL_SpecialDate">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Event_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="English_date" Type="date" />
+          <Property Name="Urdu_Date" Type="text" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+        </EntityType>
         <EntityType Name="FL_TIMELINE">
           <Key>
             <PropertyRef Name="Timeline_Id" />
@@ -131,6 +143,7 @@
           <EntitySet Name="FL_MASJID" EntityType="Self.FL_MASJID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_PROJECT" EntityType="Self.FL_PROJECT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_Project_Images" EntityType="Self.FL_Project_Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FL_SpecialDate" EntityType="Self.FL_SpecialDate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_TIMELINE" EntityType="Self.FL_TIMELINE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projecct_Images" EntityType="Self.Projecct_Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -144,7 +157,7 @@
             <PropertyRef Name="Azkar_ID" />
           </Key>
           <Property Name="Azkar_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Azkar_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Azkar_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Azkar_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Azkar_Eng" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Azkar_Urdu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -196,6 +209,7 @@
           <EntitySet Name="Projecct_Images" EntityType="FL_ACMEModel.Projecct_Images" />
           <EntitySet Name="FL_Project_Images" EntityType="FL_ACMEModel.FL_Project_Images" />
           <EntitySet Name="FL_TIMELINE" EntityType="FL_ACMEModel.FL_TIMELINE" />
+          <EntitySet Name="FL_SpecialDate" EntityType="FL_ACMEModel.FL_SpecialDate" />
         </EntityContainer>
         <ComplexType Name="sp_GetAllUsers_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -294,6 +308,18 @@
           <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
           <Property Name="DateCreated" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FL_SpecialDate">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Event_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="English_date" Type="DateTime" Precision="0" />
+          <Property Name="Urdu_Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="Int32" />
         </EntityType>
       </Schema>
@@ -460,6 +486,19 @@
                 <ScalarProperty Name="Timeline_Short" ColumnName="Timeline_Short" />
                 <ScalarProperty Name="TimeLine_Name" ColumnName="TimeLine_Name" />
                 <ScalarProperty Name="Timeline_Id" ColumnName="Timeline_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FL_SpecialDate">
+            <EntityTypeMapping TypeName="FL_ACMEModel.FL_SpecialDate">
+              <MappingFragment StoreEntitySet="FL_SpecialDate">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Urdu_Date" ColumnName="Urdu_Date" />
+                <ScalarProperty Name="English_date" ColumnName="English_date" />
+                <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

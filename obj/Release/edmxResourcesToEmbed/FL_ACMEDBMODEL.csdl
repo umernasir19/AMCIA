@@ -5,7 +5,7 @@
       <PropertyRef Name="Azkar_ID" />
     </Key>
     <Property Name="Azkar_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Azkar_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Azkar_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Azkar_Arabic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Azkar_Eng" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Azkar_Urdu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -57,6 +57,7 @@
     <EntitySet Name="Projecct_Images" EntityType="FL_ACMEModel.Projecct_Images" />
     <EntitySet Name="FL_Project_Images" EntityType="FL_ACMEModel.FL_Project_Images" />
     <EntitySet Name="FL_TIMELINE" EntityType="FL_ACMEModel.FL_TIMELINE" />
+    <EntitySet Name="FL_SpecialDate" EntityType="FL_ACMEModel.FL_SpecialDate" />
   </EntityContainer>
   <ComplexType Name="sp_GetAllUsers_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
@@ -155,6 +156,18 @@
     <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="Boolean" />
     <Property Name="DateCreated" Type="DateTime" Precision="0" />
+    <Property Name="CreatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="FL_SpecialDate">
+    <Key>
+      <PropertyRef Name="S_ID" />
+    </Key>
+    <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Event_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="English_date" Type="DateTime" Precision="0" />
+    <Property Name="Urdu_Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="Int32" />
   </EntityType>
 </Schema>

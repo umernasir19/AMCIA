@@ -162,5 +162,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FL_SpecialDate">
+      <EntityTypeMapping TypeName="FL_ACMEModel.FL_SpecialDate">
+        <MappingFragment StoreEntitySet="FL_SpecialDate">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Urdu_Date" ColumnName="Urdu_Date" />
+          <ScalarProperty Name="English_date" ColumnName="English_date" />
+          <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
+          <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

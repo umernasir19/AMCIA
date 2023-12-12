@@ -19,7 +19,7 @@
       <PropertyRef Name="Azkar_ID" />
     </Key>
     <Property Name="Azkar_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Azkar_Name" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Azkar_Name" Type="nvarchar(max)" />
     <Property Name="Azkar_Arabic" Type="nvarchar(max)" />
     <Property Name="Azkar_Eng" Type="varchar" MaxLength="200" />
     <Property Name="Azkar_Urdu" Type="nvarchar(max)" />
@@ -81,6 +81,18 @@
     <Property Name="Project_ID" Type="int" />
     <Property Name="ImagePAth" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="FL_SpecialDate">
+    <Key>
+      <PropertyRef Name="S_ID" />
+    </Key>
+    <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Event_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="English_date" Type="date" />
+    <Property Name="Urdu_Date" Type="text" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
   <EntityType Name="FL_TIMELINE">
     <Key>
       <PropertyRef Name="Timeline_Id" />
@@ -126,6 +138,7 @@
     <EntitySet Name="FL_MASJID" EntityType="Self.FL_MASJID" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_PROJECT" EntityType="Self.FL_PROJECT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_Project_Images" EntityType="Self.FL_Project_Images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FL_SpecialDate" EntityType="Self.FL_SpecialDate" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_TIMELINE" EntityType="Self.FL_TIMELINE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Projecct_Images" EntityType="Self.Projecct_Images" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />

@@ -1,22 +1,30 @@
 ﻿﻿
 
-@model FL_ACME.Models.ViewModels.Masjid_Property
+@model FL_ACME.Models.ViewModels.SpecialDate_Property
 @{
     Layout = null;
 }
 <div class="card-body">
     @*<form role="form" id="formaddtype">*@
-    @using (Ajax.BeginForm("AddUpdate", "Masjid", FormMethod.Post, new AjaxOptions { OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
-    {
+@using (Ajax.BeginForm("AddUpdate", "SpecialDate", FormMethod.Post, new AjaxOptions { OnBegin = "return validate('addupdateform');", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }, new { @id = "addupdateform", enctype = "multipart/form-data" }))
+{
         <div class="row">
             <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
                     <label>Event Name:</label>
-                    @Html.EditorFor(model => model.Masjid_Title, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })
+                    @Html.EditorFor(model => model.Event_Name, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })
                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                 </div>
-                @Html.ValidationMessageFor(model => model.Masjid_Title, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Event_Name, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.English_date, "", new { @class = "text-danger" })
+                @Html.HiddenFor(m => m.Urdu_Date)
+
+
+                @Html.HiddenFor(m=>m.S_ID)
+
+
+
             </div>
 
         </div>
@@ -25,24 +33,26 @@
         <div class="row">
             <div class="col-sm-12">
                 <!-- text input -->
-                <div id="calendar-converter">
+                <div class="form-group" id="calendar-converter">
+                    @Html.EditorFor(model => model.English_date, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @placeholder = "Lat", @class = "form-control", @type = "date" } })
+
 
                 </div>
-
+                
 
 
             </div>
 
         </div>
-
+        
         <div class="card-footer justify-content-between">
             <div class="row col-md-12">
 
                 <div class="col-md-12">
                     <div class="float-right">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        @*<input type="submit" value="Submit" class="btn btn-primary" />*@
-                        <input type="button" value="save" id="btnsavemasjid" class="btn btn-primary" />
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        @*<input type="button" value="save" id="btnsavemasjid" class="btn btn-primary" />*@
 
                     </div>
                 </div>
@@ -98,14 +108,17 @@
             cal2.disableCallback(false);
             cal1Mode = cal1.isHijriMode();
             cal2Mode = cal2.isHijriMode();
-            alert("zz")
+          
         } // prevent from infinite loop when user change the calendar mode
         else {
-            // cal2.setTime(cal1.getTime());
-            cal2.setDate(2023, 1, 1)
-            alert(cal1.getDate())
-            alert(123456)
-            alert(cal2.getDate())
+             cal2.setTime(cal1.getTime());
+            //cal2.setDate(2023, 1, 1) 
+             var sdate = cal1.getDate();
+             
+             sdate = getFormattedDate(sdate);
+             $('#English_date').val(sdate);
+             $('#Urdu_Date').val(cal2.getDate());
+            //alert(cal2.getDate())
         }
            
     };
@@ -118,10 +131,19 @@
             cal1Mode = cal1.isHijriMode();
             cal2Mode = cal2.isHijriMode();
 
-            alert("zzzzzz")
+           
         } // prevent from infinite loop when user change the calendar mode
         else
             cal1.setTime(cal2.getTime());
+        var sdate = cal1.getDate();
+
+        sdate = getFormattedDate(sdate);
+        $('#English_date').val(sdate);
+        $('#Urdu_Date').val(cal2.getDate());
+
+        //var ssdate = cal1.getDate();
+
+        //alert(getFormattedDate(ssdate))
        
     };
 
@@ -132,6 +154,35 @@
     cal2.onHide = function () {
         cal2.show(); // prevent the widget from being closed
     };
+    function getFormattedDate(date) {
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
 
+        return  year+'-'+month + '-' + day;
+    }
     
+   
+        
+
+
+
+
+    $( document ).ready(function() {
+        var id = $('#S_ID').val();
+        if (id == 0) {
+            //var todaydate = new Date();
+            //cal1.setDate(todaydate.getFullYear(), todaydate.getMonth(), todaydate.getDate());
+            //cal2.setTime(cal1.getTime());
+        }
+        else {
+            
+            //  
+            var mydate = new Date($('#English_date').val());
+            cal1.setDate(mydate.getFullYear(), mydate.getMonth(), mydate.getDate());
+            cal2.setTime(cal1.getTime());
+            //console.log(mydate.getFullYear());
+        }
+    });
+
 </script>

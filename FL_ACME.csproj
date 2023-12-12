@@ -668,6 +668,7 @@
     <Compile Include="Controllers_Api\MasjidApiController.cs" />
     <Compile Include="Controllers_Api\NamazApiController.cs" />
     <Compile Include="Controllers_Api\ProjectApiController.cs" />
+    <Compile Include="Controllers_Api\SpecialDateApiController.cs" />
     <Compile Include="Controllers_Api\TimelineApiController.cs" />
     <Compile Include="FL_ACMEDBMODEL.Context.cs">
       <AutoGen>True</AutoGen>
@@ -702,12 +703,16 @@
     <Compile Include="FL_Project_Images.cs">
       <DependentUpon>FL_ACMEDBMODEL.tt</DependentUpon>
     </Compile>
+    <Compile Include="FL_SpecialDate.cs">
+      <DependentUpon>FL_ACMEDBMODEL.tt</DependentUpon>
+    </Compile>
     <Compile Include="FL_TIMELINE.cs">
       <DependentUpon>FL_ACMEDBMODEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\SpecialDate_Property.cs" />
     <Compile Include="Models\ViewModels\TimeLine_Property.cs" />
     <Compile Include="Models\ViewModels\Article_Property.cs" />
     <Compile Include="Models\ViewModels\Azkar_Property.cs" />
