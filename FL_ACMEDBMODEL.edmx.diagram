@@ -15,6 +15,7 @@
         <EntityTypeShape EntityType="FL_ACMEModel.FL_Project_Images" Width="1.5" PointX="7.375" PointY="3.75" />
         <EntityTypeShape EntityType="FL_ACMEModel.FL_TIMELINE" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="FL_ACMEModel.FL_SpecialDate" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="FL_ACMEModel.FL_NAMAZ" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

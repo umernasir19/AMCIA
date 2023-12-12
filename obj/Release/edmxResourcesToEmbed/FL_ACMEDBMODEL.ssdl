@@ -58,6 +58,22 @@
     <Property Name="Rating" Type="decimal" Precision="3" Scale="2" />
     <Property Name="ImagePath" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="FL_NAMAZ">
+    <Key>
+      <PropertyRef Name="Namaz_ID" />
+    </Key>
+    <Property Name="Namaz_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Masjid_Id" Type="int" />
+    <Property Name="Fajar_Time" Type="time" Precision="7" />
+    <Property Name="Zuhar_Time" Type="time" Precision="7" />
+    <Property Name="Asar_Time" Type="time" Precision="7" />
+    <Property Name="Maghrib_Time" Type="time" Precision="7" />
+    <Property Name="Isha_Time" Type="time" Precision="7" />
+    <Property Name="Custom_Time" Type="time" Precision="7" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
   <EntityType Name="FL_PROJECT">
     <Key>
       <PropertyRef Name="Project_ID" />
@@ -136,6 +152,7 @@
     <EntitySet Name="FL_AZKAR" EntityType="Self.FL_AZKAR" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_EVENTS" EntityType="Self.FL_EVENTS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_MASJID" EntityType="Self.FL_MASJID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FL_NAMAZ" EntityType="Self.FL_NAMAZ" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_PROJECT" EntityType="Self.FL_PROJECT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_Project_Images" EntityType="Self.FL_Project_Images" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FL_SpecialDate" EntityType="Self.FL_SpecialDate" Schema="dbo" store:Type="Tables" />

@@ -1,381 +1,104 @@
 ﻿﻿
-@model FL_ACME.Models.ViewModels.Masjid_Property
+@model FL_ACME.Models.ViewModels.Namaz_Property
 @{
     Layout = null;
 }
 <div class="card-body">
     @*<form role="form" id="formaddtype">*@
-    @using (Ajax.BeginForm("AddUpdate", "Masjid", FormMethod.Post, new AjaxOptions { OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
-    {
+@using (Ajax.BeginForm("AddUpdate", "Namaz", FormMethod.Post, new AjaxOptions { OnBegin = "return validate('addupdateform');", OnSuccess = "OnSuccess", OnFailure = "OnFailure" }, new { @id = "addupdateform", enctype = "multipart/form-data" }))
+{
+
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- text input -->
+            <div class="form-group">
+                <label>Masjid :</label>
+                 @Html.DropDownListFor(model => model.Masjid_Id, new SelectList(Model.MasjidList, "MAsjid_ID", "Masjid_Title"), "Select Masjid", new { @Class = "form-control select2" })
+
+
+                @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+            </div>
+            @Html.ValidationMessageFor(model => model.Masjid_Id, "", new { @class = "text-danger" })
+
+
+        </div>
+        @Html.HiddenFor(model => model.Namaz_ID)
+    </div>
+
         <div class="row">
-            <div class="col-sm-12">
+            
+            <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
-                    @*<label>Namaz Name:</label>
-                        @Html.EditorFor(model => model.Masjid_Title, new { htmlAttributes = new { @placeholder = " Name", @class = "form-control" } })*@
+                    <label>Fajar time:</label>
+                    @Html.EditorFor(model => model.Fajar_Time, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                 </div>
-                @Html.ValidationMessageFor(model => model.Masjid_Title, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Fajar_Time, "", new { @class = "text-danger" })
+
+
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Zuhar time:</label>
+                    @Html.EditorFor(model => model.Zuhar_Time, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Zuhar_Time, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Asar time:</label>
+                    @Html.EditorFor(model => model.Asar_Time, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Asar_Time, "", new { @class = "text-danger" })
+
+
+            </div>
+            <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Maghrib time:</label>
+                    @Html.EditorFor(model => model.Maghrib_Time, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
+                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
+                </div>
+                @Html.ValidationMessageFor(model => model.Maghrib_Time, "", new { @class = "text-danger" })
 
 
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
+
+            <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
-                    <label>Select Namaz:</label>
-                    @Html.DropDownListFor(model => model.Masjid_Location, new List<SelectListItem> {
-                       new SelectListItem { Value = "0" , Text = "Fajar" },
-                       new SelectListItem { Value = "1" , Text = "Zuhar" },
-                        new SelectListItem { Value = "1" , Text = "Asar" },
-                         new SelectListItem { Value = "1" , Text = "Maghrib" },
-                       new SelectListItem { Value = "2" , Text = "Esha" }
-                    }, "Select Namaz", new { @Class = "form-control select2" })
+                    <label>Isha time:</label>
+                    @Html.EditorFor(model => model.Isha_Time, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
                     @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
                 </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Isha_Time, "", new { @class = "text-danger" })
 
 
             </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date From:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date To:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Time From:</label>
-                    @*@Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })*@
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>TIme To:</label>
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            @Html.HiddenFor(model => model.MAsjid_ID)
+            
         </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Select Namaz:</label>
-                    @Html.DropDownListFor(model => model.Masjid_Location, new List<SelectListItem> {
-                       new SelectListItem { Value = "0" , Text = "Fajar" },
-                       new SelectListItem { Value = "1" , Text = "Zuhar" },
-                        new SelectListItem { Value = "1" , Text = "Asar" },
-                         new SelectListItem { Value = "1" , Text = "Maghrib" },
-                       new SelectListItem { Value = "2" , Text = "Esha" }
-                    }, "Select Namaz", new { @Class = "form-control select2" })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date From:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date To:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Time From:</label>
-                    @*@Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })*@
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>TIme To:</label>
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            @Html.HiddenFor(model => model.MAsjid_ID)
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Select Namaz:</label>
-                    @Html.DropDownListFor(model => model.Masjid_Location, new List<SelectListItem> {
-                       new SelectListItem { Value = "0" , Text = "Fajar" },
-                       new SelectListItem { Value = "1" , Text = "Zuhar" },
-                        new SelectListItem { Value = "1" , Text = "Asar" },
-                         new SelectListItem { Value = "1" , Text = "Maghrib" },
-                       new SelectListItem { Value = "2" , Text = "Esha" }
-                    }, "Select Namaz", new { @Class = "form-control select2" })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date From:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date To:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Time From:</label>
-                    @*@Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })*@
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>TIme To:</label>
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            @Html.HiddenFor(model => model.MAsjid_ID)
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Select Namaz:</label>
-                    @Html.DropDownListFor(model => model.Masjid_Location, new List<SelectListItem> {
-                       new SelectListItem { Value = "0" , Text = "Fajar" },
-                       new SelectListItem { Value = "1" , Text = "Zuhar" },
-                        new SelectListItem { Value = "1" , Text = "Asar" },
-                         new SelectListItem { Value = "1" , Text = "Maghrib" },
-                       new SelectListItem { Value = "2" , Text = "Esha" }
-                    }, "Select Namaz", new { @Class = "form-control select2" })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date From:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date To:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Time From:</label>
-                    @*@Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })*@
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>TIme To:</label>
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            @Html.HiddenFor(model => model.MAsjid_ID)
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Select Namaz:</label>
-                    @Html.DropDownListFor(model => model.Masjid_Location, new List<SelectListItem> {
-                       new SelectListItem { Value = "0" , Text = "Fajar" },
-                       new SelectListItem { Value = "1" , Text = "Zuhar" },
-                        new SelectListItem { Value = "1" , Text = "Asar" },
-                         new SelectListItem { Value = "1" , Text = "Maghrib" },
-                       new SelectListItem { Value = "2" , Text = "Esha" }
-                    }, "Select Namaz", new { @Class = "form-control select2" })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date From:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Date To:</label>
-                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Time From:</label>
-                    @*@Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @placeholder = "Location", @class = "form-control" } })*@
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            <div class="col-sm-2">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>TIme To:</label>
-                    <input type="time" class="form-control">
-                </div>
-                @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
-
-
-            </div>
-            @Html.HiddenFor(model => model.MAsjid_ID)
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Masjid :</label>
-                    @Html.DropDownListFor(model => model.Masjid_Location, new List<SelectListItem> {
-                       new SelectListItem { Value = "0" , Text = "Option A" },
-                       new SelectListItem { Value = "1" , Text = "Option B" },
-                       new SelectListItem { Value = "2" , Text = "Option C" }
-                    }, "Select Masjid", new { @Class = "form-control select2" })
-                    @*<input type="text"  class="form-control" placeholder="@ViewBag.CustomerCode" disabled>*@
-                </div>
-                @Html.ValidationMessageFor(model => model.Masjid_Location, "", new { @class = "text-danger" })
-
-
-            </div>
-            @Html.HiddenFor(model => model.MAsjid_ID)
-        </div>
-        <!--<div class="row">
-        <div class="col-sm-12">-->
-        <!-- text input -->
-        <!--<div class="form-group">
-                    <label>Description:</label>
-
-                </div>
-
-
-
-            </div>
-
-
-        </div>-->
         <div class="card-footer justify-content-between">
             <div class="row col-md-12">
 
                 <div class="col-md-12">
                     <div class="float-right">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        @*<input type="submit" value="Submit" class="btn btn-primary" />*@
-                        <input type="button" value="save" id="btnsavemasjid" class="btn btn-primary" />
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        @*<input type="button" value="save" id="btnsavemasjid" class="btn btn-primary" />*@
 
                     </div>
                 </div>
@@ -387,6 +110,11 @@
 </div>
 
 <script>
+
+    $("#Masjid_Id").select2({
+        theme: "default"
+
+    });
     $("#btnsavemasjid").click(function () {
         Command: toastr["success"]("success", "Saved")
 

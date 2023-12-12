@@ -604,6 +604,72 @@
     <Content Include="plugins\raty\jquery.raty.js" />
     <Content Include="plugins\raty\raty.css" />
     <Content Include="plugins\raty\raty.js" />
+    <Content Include="plugins\select2\css\select2.css" />
+    <Content Include="plugins\select2\css\select2.min.css" />
+    <Content Include="plugins\select2\js\i18n\af.js" />
+    <Content Include="plugins\select2\js\i18n\ar.js" />
+    <Content Include="plugins\select2\js\i18n\az.js" />
+    <Content Include="plugins\select2\js\i18n\bg.js" />
+    <Content Include="plugins\select2\js\i18n\bn.js" />
+    <Content Include="plugins\select2\js\i18n\bs.js" />
+    <Content Include="plugins\select2\js\i18n\build.txt" />
+    <Content Include="plugins\select2\js\i18n\ca.js" />
+    <Content Include="plugins\select2\js\i18n\cs.js" />
+    <Content Include="plugins\select2\js\i18n\da.js" />
+    <Content Include="plugins\select2\js\i18n\de.js" />
+    <Content Include="plugins\select2\js\i18n\dsb.js" />
+    <Content Include="plugins\select2\js\i18n\el.js" />
+    <Content Include="plugins\select2\js\i18n\en.js" />
+    <Content Include="plugins\select2\js\i18n\es.js" />
+    <Content Include="plugins\select2\js\i18n\et.js" />
+    <Content Include="plugins\select2\js\i18n\eu.js" />
+    <Content Include="plugins\select2\js\i18n\fa.js" />
+    <Content Include="plugins\select2\js\i18n\fi.js" />
+    <Content Include="plugins\select2\js\i18n\fr.js" />
+    <Content Include="plugins\select2\js\i18n\gl.js" />
+    <Content Include="plugins\select2\js\i18n\he.js" />
+    <Content Include="plugins\select2\js\i18n\hi.js" />
+    <Content Include="plugins\select2\js\i18n\hr.js" />
+    <Content Include="plugins\select2\js\i18n\hsb.js" />
+    <Content Include="plugins\select2\js\i18n\hu.js" />
+    <Content Include="plugins\select2\js\i18n\hy.js" />
+    <Content Include="plugins\select2\js\i18n\id.js" />
+    <Content Include="plugins\select2\js\i18n\is.js" />
+    <Content Include="plugins\select2\js\i18n\it.js" />
+    <Content Include="plugins\select2\js\i18n\ja.js" />
+    <Content Include="plugins\select2\js\i18n\ka.js" />
+    <Content Include="plugins\select2\js\i18n\km.js" />
+    <Content Include="plugins\select2\js\i18n\ko.js" />
+    <Content Include="plugins\select2\js\i18n\lt.js" />
+    <Content Include="plugins\select2\js\i18n\lv.js" />
+    <Content Include="plugins\select2\js\i18n\mk.js" />
+    <Content Include="plugins\select2\js\i18n\ms.js" />
+    <Content Include="plugins\select2\js\i18n\nb.js" />
+    <Content Include="plugins\select2\js\i18n\ne.js" />
+    <Content Include="plugins\select2\js\i18n\nl.js" />
+    <Content Include="plugins\select2\js\i18n\pl.js" />
+    <Content Include="plugins\select2\js\i18n\ps.js" />
+    <Content Include="plugins\select2\js\i18n\pt-BR.js" />
+    <Content Include="plugins\select2\js\i18n\pt.js" />
+    <Content Include="plugins\select2\js\i18n\ro.js" />
+    <Content Include="plugins\select2\js\i18n\ru.js" />
+    <Content Include="plugins\select2\js\i18n\sk.js" />
+    <Content Include="plugins\select2\js\i18n\sl.js" />
+    <Content Include="plugins\select2\js\i18n\sq.js" />
+    <Content Include="plugins\select2\js\i18n\sr-Cyrl.js" />
+    <Content Include="plugins\select2\js\i18n\sr.js" />
+    <Content Include="plugins\select2\js\i18n\sv.js" />
+    <Content Include="plugins\select2\js\i18n\th.js" />
+    <Content Include="plugins\select2\js\i18n\tk.js" />
+    <Content Include="plugins\select2\js\i18n\tr.js" />
+    <Content Include="plugins\select2\js\i18n\uk.js" />
+    <Content Include="plugins\select2\js\i18n\vi.js" />
+    <Content Include="plugins\select2\js\i18n\zh-CN.js" />
+    <Content Include="plugins\select2\js\i18n\zh-TW.js" />
+    <Content Include="plugins\select2\js\select2.full.js" />
+    <Content Include="plugins\select2\js\select2.full.min.js" />
+    <Content Include="plugins\select2\js\select2.js" />
+    <Content Include="plugins\select2\js\select2.min.js" />
     <Content Include="plugins\sweetalert2-theme-bootstrap-4\bootstrap-4.css" />
     <Content Include="plugins\sweetalert2-theme-bootstrap-4\bootstrap-4.min.css" />
     <Content Include="plugins\sweetalert2\sweetalert2.all.js" />
@@ -639,7 +705,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_HEADER.cshtml" />
     <Content Include="Views\Shared\_SideBar.cshtml" />
   </ItemGroup>
@@ -697,6 +765,9 @@
     <Compile Include="FL_MASJID.cs">
       <DependentUpon>FL_ACMEDBMODEL.tt</DependentUpon>
     </Compile>
+    <Compile Include="FL_NAMAZ.cs">
+      <DependentUpon>FL_ACMEDBMODEL.tt</DependentUpon>
+    </Compile>
     <Compile Include="FL_PROJECT.cs">
       <DependentUpon>FL_ACMEDBMODEL.tt</DependentUpon>
     </Compile>
@@ -712,6 +783,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\Namaz_Property.cs" />
     <Compile Include="Models\ViewModels\SpecialDate_Property.cs" />
     <Compile Include="Models\ViewModels\TimeLine_Property.cs" />
     <Compile Include="Models\ViewModels\Article_Property.cs" />

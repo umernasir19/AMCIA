@@ -21,7 +21,7 @@ namespace FL_ACME.App_Start
             //lib css
             bundles.Add(new StyleBundle("~/Content/libcss").Include(
                 "~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.css",
-                //"~/plugins/select2/css/select2.css",
+                "~/plugins/select2/css/select2.css",
                 //"~/plugins/select2-bootstrap4-theme/select2-bootstrap4.css",
                 "~/plugins/jqvmap/jqvmap.css",
                 "~/plugins/overlayScrollbars/css/OverlayScrollbars.css",

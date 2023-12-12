@@ -63,6 +63,22 @@
           <Property Name="Rating" Type="decimal" Precision="3" Scale="2" />
           <Property Name="ImagePath" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="FL_NAMAZ">
+          <Key>
+            <PropertyRef Name="Namaz_ID" />
+          </Key>
+          <Property Name="Namaz_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Masjid_Id" Type="int" />
+          <Property Name="Fajar_Time" Type="time" Precision="7" />
+          <Property Name="Zuhar_Time" Type="time" Precision="7" />
+          <Property Name="Asar_Time" Type="time" Precision="7" />
+          <Property Name="Maghrib_Time" Type="time" Precision="7" />
+          <Property Name="Isha_Time" Type="time" Precision="7" />
+          <Property Name="Custom_Time" Type="time" Precision="7" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+        </EntityType>
         <EntityType Name="FL_PROJECT">
           <Key>
             <PropertyRef Name="Project_ID" />
@@ -141,6 +157,7 @@
           <EntitySet Name="FL_AZKAR" EntityType="Self.FL_AZKAR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_EVENTS" EntityType="Self.FL_EVENTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_MASJID" EntityType="Self.FL_MASJID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FL_NAMAZ" EntityType="Self.FL_NAMAZ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_PROJECT" EntityType="Self.FL_PROJECT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_Project_Images" EntityType="Self.FL_Project_Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FL_SpecialDate" EntityType="Self.FL_SpecialDate" Schema="dbo" store:Type="Tables" />
@@ -210,6 +227,7 @@
           <EntitySet Name="FL_Project_Images" EntityType="FL_ACMEModel.FL_Project_Images" />
           <EntitySet Name="FL_TIMELINE" EntityType="FL_ACMEModel.FL_TIMELINE" />
           <EntitySet Name="FL_SpecialDate" EntityType="FL_ACMEModel.FL_SpecialDate" />
+          <EntitySet Name="FL_NAMAZ" EntityType="FL_ACMEModel.FL_NAMAZ" />
         </EntityContainer>
         <ComplexType Name="sp_GetAllUsers_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -318,6 +336,22 @@
           <Property Name="Event_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="English_date" Type="DateTime" Precision="0" />
           <Property Name="Urdu_Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FL_NAMAZ">
+          <Key>
+            <PropertyRef Name="Namaz_ID" />
+          </Key>
+          <Property Name="Namaz_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Masjid_Id" Type="Int32" />
+          <Property Name="Fajar_Time" Type="Time" Precision="7" />
+          <Property Name="Zuhar_Time" Type="Time" Precision="7" />
+          <Property Name="Asar_Time" Type="Time" Precision="7" />
+          <Property Name="Maghrib_Time" Type="Time" Precision="7" />
+          <Property Name="Isha_Time" Type="Time" Precision="7" />
+          <Property Name="Custom_Time" Type="Time" Precision="7" />
           <Property Name="Status" Type="Boolean" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="Int32" />
@@ -499,6 +533,23 @@
                 <ScalarProperty Name="English_date" ColumnName="English_date" />
                 <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
                 <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FL_NAMAZ">
+            <EntityTypeMapping TypeName="FL_ACMEModel.FL_NAMAZ">
+              <MappingFragment StoreEntitySet="FL_NAMAZ">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Custom_Time" ColumnName="Custom_Time" />
+                <ScalarProperty Name="Isha_Time" ColumnName="Isha_Time" />
+                <ScalarProperty Name="Maghrib_Time" ColumnName="Maghrib_Time" />
+                <ScalarProperty Name="Asar_Time" ColumnName="Asar_Time" />
+                <ScalarProperty Name="Zuhar_Time" ColumnName="Zuhar_Time" />
+                <ScalarProperty Name="Fajar_Time" ColumnName="Fajar_Time" />
+                <ScalarProperty Name="Masjid_Id" ColumnName="Masjid_Id" />
+                <ScalarProperty Name="Namaz_ID" ColumnName="Namaz_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

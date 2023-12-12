@@ -58,6 +58,7 @@
     <EntitySet Name="FL_Project_Images" EntityType="FL_ACMEModel.FL_Project_Images" />
     <EntitySet Name="FL_TIMELINE" EntityType="FL_ACMEModel.FL_TIMELINE" />
     <EntitySet Name="FL_SpecialDate" EntityType="FL_ACMEModel.FL_SpecialDate" />
+    <EntitySet Name="FL_NAMAZ" EntityType="FL_ACMEModel.FL_NAMAZ" />
   </EntityContainer>
   <ComplexType Name="sp_GetAllUsers_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
@@ -166,6 +167,22 @@
     <Property Name="Event_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="English_date" Type="DateTime" Precision="0" />
     <Property Name="Urdu_Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="FL_NAMAZ">
+    <Key>
+      <PropertyRef Name="Namaz_ID" />
+    </Key>
+    <Property Name="Namaz_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Masjid_Id" Type="Int32" />
+    <Property Name="Fajar_Time" Type="Time" Precision="7" />
+    <Property Name="Zuhar_Time" Type="Time" Precision="7" />
+    <Property Name="Asar_Time" Type="Time" Precision="7" />
+    <Property Name="Maghrib_Time" Type="Time" Precision="7" />
+    <Property Name="Isha_Time" Type="Time" Precision="7" />
+    <Property Name="Custom_Time" Type="Time" Precision="7" />
     <Property Name="Status" Type="Boolean" />
     <Property Name="DateCreated" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="Int32" />

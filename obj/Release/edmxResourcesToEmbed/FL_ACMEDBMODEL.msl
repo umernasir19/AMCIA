@@ -175,5 +175,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FL_NAMAZ">
+      <EntityTypeMapping TypeName="FL_ACMEModel.FL_NAMAZ">
+        <MappingFragment StoreEntitySet="FL_NAMAZ">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Custom_Time" ColumnName="Custom_Time" />
+          <ScalarProperty Name="Isha_Time" ColumnName="Isha_Time" />
+          <ScalarProperty Name="Maghrib_Time" ColumnName="Maghrib_Time" />
+          <ScalarProperty Name="Asar_Time" ColumnName="Asar_Time" />
+          <ScalarProperty Name="Zuhar_Time" ColumnName="Zuhar_Time" />
+          <ScalarProperty Name="Fajar_Time" ColumnName="Fajar_Time" />
+          <ScalarProperty Name="Masjid_Id" ColumnName="Masjid_Id" />
+          <ScalarProperty Name="Namaz_ID" ColumnName="Namaz_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

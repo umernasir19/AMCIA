@@ -1,4 +1,4 @@
-﻿﻿@model List<FL_ACME.Models.ViewModels.Masjid_Property>
+﻿﻿@model List<FL_ACME.Models.ViewModels.Namaz_Property>
 @{
     ViewBag.Title = "Namaz";
 }
@@ -34,174 +34,48 @@
                         <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th>Namaz Name</th>
-                                <th>Timing(s)</th>
                                 <th>Masjid Name</th>
+                                <th>Fajar Time</th>
+                                <th>Zuhar Time</th>
+                                <th>Asar Time</th>
+                                <th>Maghrib Time</th>
+                                <th>Isha Time</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    Fajar
-                                </td>
-                                <td>15: PM</td>
-                                <td>Masjid A</td>
-                                <td>
-                                    <div class="row col-sm-12">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-info" onclick="ShowProduct('ProductId')"><i class="fa fa-eye"></i></a>
-                                        </div>
+                            @{ int i = 1;
+                                foreach (var masjid in Model)
+                                {
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>
+                                            @masjid.Masjid_Title
+                                        </td>
+                                        <td>@masjid.Fajar_Time</td>
+                                        <td> @masjid.Zuhar_Time</td>
+                                        <td>@masjid.Asar_Time</td>
+                                        <td> @masjid.Maghrib_Time</td>
+                                        <td> @masjid.Isha_Time</td>
 
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-danger" onclick="ConfirmToDelete('product.ProductId')"><i class="fa fa-trash"></i></a>
-                                            <input type="submit" class="d-none" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    Internet
-                                    Explorer 5.0
-                                </td>
-                                <td>5</td>
-                                <td>Masjid B</td>
-                                <td>
-                                    <div class="row col-sm-12">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-info" onclick="ShowProduct('ProductId')"><i class="fa fa-eye"></i></a>
-                                        </div>
+                                        <td>
+                                            <div class="row col-sm-12">
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="text-info" onclick="ViewEdit(@masjid.Namaz_ID)"><i class="fa fa-eye"></i></a>
+                                                </div>
 
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-danger" onclick="ConfirmToDelete('product.ProductId')"><i class="fa fa-trash"></i></a>
-                                            <input type="submit" class="d-none" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>
-                                    Internet
-                                    Explorer 5.5
-                                </td>
+                                                <div class="col-sm-6">
+                                                    <a href="#" class="text-danger" onclick="ConfirmToDelete(@masjid.Namaz_ID)"><i class="fa fa-trash"></i></a>
+                                                    <input type="submit" class="d-none" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                            }
 
-                                <td>5.5</td>
-                                <td>Masjid C</td>
-                                <td>
-                                    <div class="row col-sm-12">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-info" onclick="ShowProduct('ProductId')"><i class="fa fa-eye"></i></a>
-                                        </div>
 
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-danger" onclick="ConfirmToDelete('product.ProductId')"><i class="fa fa-trash"></i></a>
-                                            <input type="submit" class="d-none" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>
-                                    Internet
-                                    Explorer 6
-                                </td>
-
-                                <td>6</td>
-                                <td>Masjid A</td>
-                                <td>
-                                    <div class="row col-sm-12">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-info" onclick="ShowProduct('ProductId')"><i class="fa fa-eye"></i></a>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-danger" onclick="ConfirmToDelete('product.ProductId')"><i class="fa fa-trash"></i></a>
-                                            <input type="submit" class="d-none" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Internet Explorer 7</td>
-
-                                <td>7</td>
-                                <td>Masjid A</td>
-                                <td>
-                                    <div class="row col-sm-12">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-info" onclick="ShowProduct('ProductId')"><i class="fa fa-eye"></i></a>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-danger" onclick="ConfirmToDelete('product.ProductId')"><i class="fa fa-trash"></i></a>
-                                            <input type="submit" class="d-none" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>AOL browser (AOL desktop)</td>
-
-                                <td>6</td>
-                                <td>Masjid A</td>
-                                <td>
-                                    <div class="row col-sm-12">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-info" onclick="ShowProduct('ProductId')"><i class="fa fa-eye"></i></a>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-danger" onclick="ConfirmToDelete('product.ProductId')"><i class="fa fa-trash"></i></a>
-                                            <input type="submit" class="d-none" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Firefox 1.0</td>
-
-                                <td>1.7</td>
-                                <td>Masjid A</td>
-                                <td>
-                                    <div class="row col-sm-12">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-info" onclick="ShowProduct('ProductId')"><i class="fa fa-eye"></i></a>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-danger" onclick="ConfirmToDelete('product.ProductId')"><i class="fa fa-trash"></i></a>
-                                            <input type="submit" class="d-none" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Firefox 1.5</td>
-
-                                <td>1.8</td>
-                                <td>Masjid A</td>
-                                <td>
-                                    <div class="row col-sm-12">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-info" onclick="ShowProduct('ProductId')"><i class="fa fa-eye"></i></a>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <a href="#" class="text-danger" onclick="ConfirmToDelete('product.ProductId')"><i class="fa fa-trash"></i></a>
-                                            <input type="submit" class="d-none" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
 
                         </tbody>
                     </table>
@@ -263,18 +137,67 @@
 
         function ConfirmToDelete(id) {
             $('#deleteLink').click(function () {
-                window.location.href = "/Namaz/Namaz/";
+                /*window.location.href = "/Azkar/Delete/" + id;*/
+
+
+                $.post("/Namaz/Delete/" + id, function (data) {
+                    if (data.statuscode == '200' && data.flag == true) {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        Command: toastr["success"]("Completed")
+                        setTimeout(function () { window.location.href = data.url; }, 3000);
+
+                    }
+                    else {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        Command: toastr["error"]("Failed")
+                    }
+
+                });
             });
             $('#ConfirmModal').show();
         }
-        function ShowProduct(ID) {
+
+        function ViewEdit(ID) {
             //showLoading();
-            var url = "/Namaz/AddNamaz?Id=" + 1;
+            var url = "/Namaz/AddNamaz?Id=" + ID;
 
             $("#Namazdmodelbody").load(url, function (e) {
                 var id = $('#MAsjid_ID').val();
                 if (id > 0) {
-                    $('#btnsavemasjid').html("update ");
+
+                    $('#btnsave').html("update ");
                 }
                 $("#AddnamazModel").modal("show");
                 // hideLoading();
